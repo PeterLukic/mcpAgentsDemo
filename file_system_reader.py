@@ -4,7 +4,7 @@ from mcp.server.fastmcp import FastMCP
 
 BASE_DIR = Path(os.getenv("FILE_READER_DIRECTORY", "./documents"))
 
-mpc = FastMCP("file-system-reader")
+mcp = FastMCP("file-system-reader")
 
 @mpc.tool()
 def read_file(filename: str) -> str:
@@ -30,4 +30,9 @@ def list_files() -> str:
     
     except Exception as exception:
         return f"Error listing file: {exception}"
+    
+if __name__ == "__main__":
+    print("MPC is running")
+    BASE_DIR.mkdir(parents=True, exist_ok=True)
+    mcp.run()
 
